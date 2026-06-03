@@ -1,10 +1,10 @@
 return {
   {
-    "pgdouyon/vim-yin-yang",
+    "liuchengxu/space-vim-dark",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd("colorscheme yin")
+      vim.cmd("colorscheme space-vim-dark")
     end,
   },
 }
