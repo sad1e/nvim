@@ -4,6 +4,8 @@
 --
 
 vim.g.snacks_animate = false
+vim.g.lazyvim_python_lsp = "ty"
+vim.g.lazyvim_python_ruff = "ruff"
 
 local opt = vim.opt
 opt.relativenumber = false
