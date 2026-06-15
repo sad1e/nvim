@@ -18,4 +18,22 @@ return {
       },
     },
   },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      highlight = {
+        disable = { "cpp", "c", "lua", "markdown", "python" },
+      },
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      setup = {
+        clangd = function(_, opts)
+          opts.cmd = { "clangd", "--header-insertion=never" }
+        end,
+      },
+    },
+  },
 }
