@@ -1,4 +1,5 @@
 return {
+  { "nivmdev/dashboard-nvim", enabled = false },
   {
     "folke/snacks.nvim",
     opts = {

@@ -10,3 +10,4 @@ vim.g.lazyvim_python_ruff = "ruff"
 local opt = vim.opt
 opt.relativenumber = false
 opt.swapfile = false
+opt.list = false
