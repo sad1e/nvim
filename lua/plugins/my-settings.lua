@@ -7,6 +7,17 @@ return {
     },
   },
   {
+    "akinsho/bufferline.nvim",
+    opts = {
+      highlights = {
+        buffer_selected = {
+          italic = false,
+        },
+        tab_selected = { italic = false },
+      },
+    },
+  },
+  {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
