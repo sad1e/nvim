@@ -20,6 +20,10 @@ return {
     opts = function()
       return {
         transparent = true,
+        styles = {
+          keywords = { italic = false },
+          comments = { italic = false },
+        },
       }
     end,
   },
