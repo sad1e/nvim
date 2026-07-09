@@ -120,7 +120,63 @@ return {
           }
       end
 
+      local function get_vscode_modern_theme()
+        local ok_palette, palette = pcall(require, "vscode_modern.palette")
+        local ok_themes, themes = pcall(require, "vscode_modern.themes")
+        local ok_vscode_modern, vscode_modern = pcall(require, "vscode_modern")
+
+        if not ok_palette or not ok_themes then
+          return get_solarized_theme()
+        end
+
+        local config = {}
+        if ok_vscode_modern and type(vscode_modern.config) == "table" then
+          config = vscode_modern.config
+        end
+
+        local theme_name = vim.o.background == "light" and "light" or "dark"
+        local theme = themes[theme_name](palette, config)
+        local status_line = theme.ui.status_line
+
+        local custom_vscode_modern_theme = {
+          normal = {
+            a = { fg = status_line.mode.fg, bg = status_line.mode.bg, gui = "bold" },
+            b = { fg = status_line.fg, bg = status_line.medium.bg },
+            c = { fg = status_line.fg, bg = status_line.bg },
+          },
+          insert = {
+            a = { fg = palette.light_17, bg = theme.git.signs.add, gui = "bold" },
+          },
+          visual = {
+            a = { fg = palette.dark_01, bg = theme.sintax.keyword_control_flow, gui = "bold" },
+          },
+          replace = {
+            a = { fg = palette.light_17, bg = theme.lsp.diagnostics.error, gui = "bold" },
+          },
+          command = {
+            a = { fg = palette.dark_01, bg = theme.lsp.diagnostics.warn, gui = "bold" },
+          },
+          inactive = {
+            a = { fg = status_line.fg, bg = status_line.bg },
+            b = { fg = status_line.fg, bg = status_line.bg },
+            c = { fg = status_line.bg, bg = status_line.bg },
+          },
+        }
+
+        return custom_vscode_modern_theme,
+          {
+            branch = status_line.icon.branch.fg,
+            added = theme.git.signs.add,
+            modified = theme.git.status.modified,
+            removed = theme.git.signs.delete,
+          }
+      end
+
       local function get_lualine_theme()
+        if vim.g.colors_name == "vscode_modern" then
+          return get_vscode_modern_theme()
+        end
+
         if vim.g.colors_name == "zenburn" or vim.g.colors_name == "zenburn.nvim" then
           return get_zenburn_theme()
         end
